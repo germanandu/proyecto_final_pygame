@@ -1,7 +1,8 @@
 
 from settings import *
-from clases import *
 from tilemap import *
+from jugador import *
+from obstaculo import *
 from os import path
 import pygame
 
@@ -11,30 +12,30 @@ if __name__ == '__main__':
     ventana = pygame.display.set_mode([ANCHO,ALTO])
     #GRUPOS
     jugadores=pygame.sprite.Group()
+    obstaculos=pygame.sprite.Group()
     #CREACION OBJETOS
-    j=Jugador([128,66],m)
-    jugadores.add(j)
+    #j=Jugador([128,66],m)
+    #jugadores.add(j)
     #JUEGO
     #game_folder = path.dirname(__file__)
     #map_folder = path.join(game_folder, 'maps')
     #map = TiledMap(path.join(map_folder, 'level1.tmx'))
 
-    map = TiledMap('maps/level1.tmx')
+    map = TiledMap('maps/mapa2.tmx')
     map_img = map.make_map()
     map_rect = map_img.get_rect()
-    camera = Camera(map.width,  map.height)
-    tm1 = map.tmxdata.objects
-    print tm1
+    camara = Camara(map.width,  map.height)
+
 #CREACION  OBSTACULOS
-    for tile_object in tm1:
+    for tile_object in map.tmxdata.objects:
 
         if tile_object.name == 'player':
             j = Jugador([tile_object.x, tile_object.y],m)
             jugadores.add(j)
-        #if tile_object.name == 'wall':
-            #Obstaculo([tile_object.x, tile_object.y],
-                        #tile_object.width, tile_object.height)
-
+        if tile_object.name == 'wall':
+            o=Obstaculo([tile_object.x, tile_object.y],tile_object.width, tile_object.height)
+            obstaculos.add(o)
+    j.obstaculos=obstaculos
 
     while not fin:
         #gestion de eventos---------------------------------------------
@@ -65,10 +66,10 @@ if __name__ == '__main__':
 
 
         #REFRESCO
-        ventana.fill(NEGRO)
-        camera.update(j)
+        #ventana.fill(NEGRO)
+        camara.update(j)
         jugadores.update()
-        ventana.blit(map_img, camera.apply_rect(map_rect))
-        ventana.blit(j.image,camera.apply(j))
+        ventana.blit(map_img, camara.apply_rect(map_rect))
+        ventana.blit(j.image,camara.apply(j))
         pygame.display.flip()
         reloj.tick(60)

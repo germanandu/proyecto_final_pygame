@@ -26,17 +26,17 @@ class TiledMap:
         self.render(temp_surface)
         return temp_surface
 
-class Camera:
+class Camara:
     def __init__(self, width, height):
-        self.camera = pg.Rect(0, 0, width, height)
+        self.camara = pg.Rect(0, 0, width, height)
         self.width = width
         self.height = height
 
-    def apply(self, entity):
-        return entity.rect.move(self.camera.topleft)
+    def apply(self, entidad):
+        return entidad.rect.move(self.camara.topleft)
 
     def apply_rect(self, rect):
-        return rect.move(self.camera.topleft)
+        return rect.move(self.camara.topleft)
 
     def update(self, target):
         x = -target.rect.centerx + int(WIDTH / 2)
@@ -47,4 +47,4 @@ class Camera:
         y = min(0, y)  # top
         x = max(-(self.width - WIDTH), x)  # right
         y = max(-(self.height - HEIGHT), y)  # bottom
-        self.camera = pg.Rect(x, y, self.width, self.height)
+        self.camara = pg.Rect(x, y, self.width, self.height)
