@@ -14,6 +14,14 @@ class Jugador(pygame.sprite.Sprite):
         self.velx=0
         self.vely=0
         self.obstaculos=None
+        self.vida=4
+        self.score=0
+        self.balas=25
+    
+    def RetPos(self):
+        x=self.rect.x +34
+        y=self.rect.y +24
+        return [x,y]
 
     def update(self):
         if self.velx!=self.vely:
