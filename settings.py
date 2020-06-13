@@ -24,10 +24,18 @@ escorpion=pygame.image.load('img/escorpion.png')
 bala=pygame.image.load('img/bala.png')
 golem=pygame.image.load('img/golem.png')
 
-fondo_inicio=pygame.image.load('img/selva.png')
+fondo_inicio=pygame.image.load('img/fondo2.png')
+congratulations=pygame.image.load('img/congratulations.png')
+fondo_final=pygame.image.load('img/fondofinal.png')
 titulo_inicio=pygame.image.load('img/titulo.png')
+vida_j=pygame.image.load('img/vida.png')
+vida_j2=pygame.image.load('img/vida2.png')
+municion_i=pygame.image.load('img/municion.png')
+rayo_i=pygame.image.load('img/rayo.png')
 press_start=pygame.image.load('img/start.png')
 cielo=pygame.image.load('img/cielo3.jpg')
+gameover=pygame.image.load('img/gameover.png')
+bola=pygame.image.load('img/bola.png')
 
 temps=0
 
@@ -62,7 +70,10 @@ for f in range(4):
     m4.append(fila)
 
 fin = False
+gameover_b=False
 colision=False
+colision2=False
+duracion_rayo=0
 reloj=pygame.time.Clock()
 #dt = reloj.tick(60) / 1000.0
 
